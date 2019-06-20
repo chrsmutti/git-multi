@@ -77,7 +77,7 @@ func runGitCmd(commands []string, repos []os.FileInfo, workingDir string) error 
 
 	grouped := make(map[string][]string)
 
-	for _ = range repos {
+	for range repos {
 		result := <-results
 
 		if result.err != nil {
