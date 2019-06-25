@@ -1,4 +1,4 @@
-BINARY := bin/anicli
+BINARY := bin/git-multi
 GOBIN := $(GOPATH)/bin
 
 build: $(BINARY)
