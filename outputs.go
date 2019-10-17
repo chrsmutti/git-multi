@@ -25,7 +25,7 @@ func outputs(repos []Repo, results chan result, group bool) ([]output, error) {
 		if group {
 			key = result.out
 		} else {
-			key = result.repo.Name()
+			key = result.repo.Path
 		}
 
 		seen[key] = append(seen[key], result)
@@ -38,7 +38,7 @@ func outputs(repos []Repo, results chan result, group bool) ([]output, error) {
 	for _, results := range seen {
 		repos := make([]string, len(results))
 		for i, result := range results {
-			repos[i] = result.repo.Name()
+			repos[i] = result.repo.Path
 		}
 
 		outputs = append(outputs, output{repos, results[0].out})

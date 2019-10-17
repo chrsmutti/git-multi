@@ -13,6 +13,8 @@ Usage:
 Application Options:
   -w, --working-dir= set the working directory (default: .)
       --no-group     do not group same outputs
+  -d, --depth=       depth of folders to look into for git repositories
+                     (default: 1)
 
 Help Options:
   -h, --help         Show this help message
