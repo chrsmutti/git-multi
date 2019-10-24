@@ -10,10 +10,12 @@ import (
 // Repo contains information about a git repository.
 type Repo struct {
 	os.FileInfo
+	// Path is the relative path to the repo from the working dir.
+	Path string
 }
 
 // Repos returns all git repositories present in a directory.
-func Repos(dir string) ([]Repo, error) {
+func Repos(dir string, current int, depth int) ([]Repo, error) {
 	items, err := ioutil.ReadDir(dir)
 	if err != nil {
 		return nil, err
@@ -25,7 +27,8 @@ func Repos(dir string) ([]Repo, error) {
 			continue
 		}
 
-		_, err := os.Stat(path.Join(dir, item.Name(), ".git"))
+		pathName := path.Join(dir, item.Name())
+		_, err := os.Stat(path.Join(pathName, ".git"))
 		if err != nil {
 			if os.IsNotExist(err) {
 				continue
@@ -34,7 +37,18 @@ func Repos(dir string) ([]Repo, error) {
 			return nil, err
 		}
 
-		repos = append(repos, Repo{item})
+		repos = append(repos, Repo{item, pathName})
+	}
+
+	if current < depth {
+		for _, repo := range repos {
+			nested, err := Repos(repo.Path, current+1, depth)
+			if err != nil {
+				return nil, err
+			}
+
+			repos = append(repos, nested...)
+		}
 	}
 
 	return repos, nil
@@ -43,7 +57,7 @@ func Repos(dir string) ([]Repo, error) {
 // Command runs a git command inside a repository.
 func (r Repo) Command(commands []string, dir string) ([]byte, error) {
 	cmd := exec.Command("git", commands...)
-	cmd.Dir = path.Join(dir, r.Name())
+	cmd.Dir = path.Join(dir, r.Path)
 
 	return cmd.CombinedOutput()
 }
