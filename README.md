@@ -15,6 +15,7 @@ Application Options:
       --no-group     do not group same outputs
   -d, --depth=       depth of folders to look into for git repositories
                      (default: 1)
+      --no-color     do not print color characters
 
 Help Options:
   -h, --help         Show this help message

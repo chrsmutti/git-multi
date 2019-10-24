@@ -55,7 +55,11 @@ func Repos(dir string, current int, depth int) ([]Repo, error) {
 }
 
 // Command runs a git command inside a repository.
-func (r Repo) Command(commands []string, dir string) ([]byte, error) {
+func (r Repo) Command(commands []string, dir string, color bool) ([]byte, error) {
+	if color {
+		commands = append([]string{"-c", "color.ui=always"}, commands...)
+	}
+
 	cmd := exec.Command("git", commands...)
 	cmd.Dir = path.Join(dir, r.Path)
 

@@ -13,7 +13,7 @@ type result struct {
 	err  error
 }
 
-func run(commands []string, repos []Repo, dir string, group bool) error {
+func run(commands []string, repos []Repo, dir string, group bool, color bool) error {
 	if len(commands) == 0 {
 		commands = []string{"status"}
 	}
@@ -31,7 +31,7 @@ func run(commands []string, repos []Repo, dir string, group bool) error {
 
 	for _, repo := range repos {
 		go func(r Repo) {
-			out, err := r.Command(commands, dir)
+			out, err := r.Command(commands, dir, color)
 			results <- result{&r, string(out), err}
 		}(repo)
 	}
