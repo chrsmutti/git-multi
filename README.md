@@ -1,4 +1,6 @@
-# git-multi
+# git-multi 
+
+[![Actions Status](https://github.com/chrsmutti/git-multi/workflows/Go/badge.svg)](https://github.com/chrsmutti/git-multi/actions)
 
 A rewrite of [git-multi](https://github.com/tkrajina/git-plus/blob/master/git-multi) in Go.
 
