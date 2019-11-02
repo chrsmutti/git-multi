@@ -1,4 +1,5 @@
-BINARY := bin/git-multi
+NAME := git-multi
+BINARY := dist/$(NAME)
 GOBIN := $(GOPATH)/bin
 
 build: $(BINARY)
@@ -7,3 +8,6 @@ $(BINARY): *.go
 
 install: build
 	GOBIN=$(GOBIN) go install
+
+clean:
+	@rm -rf ./dist
