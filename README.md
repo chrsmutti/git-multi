@@ -74,3 +74,7 @@ you desire you can use the `--no-group` flag.
 ```
 git multi --no-group
 ```
+
+# License
+
+`git-multi` is licensed under the [MIT License](https://opensource.org/licenses/MIT).
