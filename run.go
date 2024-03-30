@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strings"
 
-	terminal "github.com/wayneashleyberry/terminal-dimensions"
+	"golang.org/x/term"
 )
 
 type result struct {
@@ -18,7 +19,7 @@ func run(commands []string, repos []Repo, dir string, group bool, color bool) er
 		commands = []string{"status"}
 	}
 
-	w, err := terminal.Width()
+	w, _, err := term.GetSize(int(os.Stdin.Fd()))
 	if err != nil {
 		return err
 	}

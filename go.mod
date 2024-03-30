@@ -1,8 +1,7 @@
 module github.com/chrsmutti/git-multi
 
-go 1.12
+go 1.22
 
-require (
-	github.com/jessevdk/go-flags v1.4.1-0.20181221193153-c0795c8afcf4
-	github.com/wayneashleyberry/terminal-dimensions v1.0.0
-)
+require golang.org/x/term v0.18.0
+
+require golang.org/x/sys v0.18.0 // indirect

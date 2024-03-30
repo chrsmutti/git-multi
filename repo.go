@@ -1,7 +1,6 @@
 package main
 
 import (
-	"io/ioutil"
 	"os"
 	"os/exec"
 	"path"
@@ -9,14 +8,14 @@ import (
 
 // Repo contains information about a git repository.
 type Repo struct {
-	os.FileInfo
+	os.DirEntry
 	// Path is the relative path to the repo from the working dir.
 	Path string
 }
 
 // Repos returns all git repositories present in a directory.
 func Repos(dir string, current int, depth int) ([]Repo, error) {
-	items, err := ioutil.ReadDir(dir)
+	items, err := os.ReadDir(dir)
 	if err != nil {
 		return nil, err
 	}

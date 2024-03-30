@@ -34,18 +34,15 @@ make install
 ## Usage
 
 ```
-Usage:
-  git-multi [OPTIONS]
-
-Application Options:
-  -w, --working-dir= set the working directory (default: .)
-      --no-group     do not group same outputs
-  -d, --depth=       depth of folders to look into for git repositories
-                     (default: 1)
-      --no-color     do not print color characters
-
-Help Options:
-  -h, --help         Show this help message
+Usage of git-multi:
+  -d int
+    	depth of folders to look into for git repositories (default 1)
+  -no-color
+    	do not print color characters
+  -no-group
+    	do not group same outputs
+  -w string
+    	set the working directory (default ".")
 ```
 
 If you have repositories ~/Projects/Repo1, ~/Projects/Repo2, ...:
@@ -60,19 +57,19 @@ git multi status
 git multi
 
 # You can also pass flags to git commands:
-git multi status -- --short
+git multi status --short
 ```
 
 The basic usage is simple:
-`git multi <normal_git_commands_here> -- <normal_git_flags_here>`
+`git multi <git_multi_flags_here> <normal_git_commands_here> <normal_git_flags_here>`
 
 ## Group By Output
 
 By default this version of git multi always groups by output, if that's not what
-you desire you can use the `--no-group` flag.
+you desire you can use the `-no-group` flag.
 
 ```
-git multi --no-group
+git multi -no-group
 ```
 
 # License
